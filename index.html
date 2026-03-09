@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النموذج 3 الشامل - أ/ عبدالعزيز الفيفي</title>
+    <title>تحدي اليوم - أ/ عبدالعزيز الفيفي</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root { --primary: #4a148c; --secondary: #7b1fa2; --bg: #f5f5f5; --accent: #ff9800; --correct: #2e7d32; --wrong: #c62828; }
@@ -21,7 +21,6 @@
         #timer-text { font-weight: bold; color: var(--accent); margin-bottom: 10px; }
         .copyright { font-size: 0.85rem; color: #666; margin-top: 25px; border-top: 1px solid #eee; padding-top: 10px; }
 
-        /* التنسيقات المطلوبة لاسمك والمدرسة والتاريخ */
         .normal-text { color: #000; font-weight: normal; font-size: 0.85rem; }
         .date-red-small { color: #e53e3e; font-size: 0.85rem; font-weight: bold; margin: 10px 0; display: inline-block; }
     </style>
@@ -56,39 +55,37 @@
     <div id="result-section" class="hidden">
         <h2>تم اكتمال الاختبار بنجاح</h2>
         <h1 id="final-score" style="color: var(--primary);"></h1>
-       <!-- إضافة خط Tajawal من Google Fonts لضمان جمال النص -->
-<link href="https://fonts.googleapis.com" rel="stylesheet">
+        <link href="https://fonts.googleapis.com" rel="stylesheet">
 
-<button class="btn-start" onclick="location.reload()" style="
-    background: linear-gradient(45deg, #ff512f, #dd2476);
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px;
-    font-family: 'Tajawal', sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(221, 36, 118, 0.4);
-    transition: transform 0.3s ease;
-    direction: rtl;
-">
-    ليس هناك تحدٍ أكبر من تطوير ذاتك؛ أعد الكرة الآن 🚀 أو كُن النسخة الأفضل غداً 🔥✨
-</button>
+        <button class="btn-start" onclick="location.reload()" style="
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(221, 36, 118, 0.4);
+            transition: transform 0.3s ease;
+            direction: rtl;
+        ">
+            ليس هناك تحدٍ أكبر من تطوير ذاتك؛ أعد الكرة الآن 🚀 أو كُن النسخة الأفضل غداً 🔥✨
+        </button>
 
-<style>
-    .btn-start:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(221, 36, 118, 0.6);
-    }
-</style>
+        <style>
+            .btn-start:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(221, 36, 118, 0.6);
+            }
+        </style>
 
         <p style="margin-top: 20px;">✨ أ / <span class="normal-text">عبد العزيز الفيفي</span> - <span class="normal-text">ثانوية الأمير عبدالمجيد 🎓</span></p>
     </div>
 </div>
 
 <script>
-    // وظيفة عرض التاريخ الهجري والميلادي معاً بدون تكرار
     function updateDateTime() {
         const today = new Date();
         const hijriOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', calendar: 'islamic-umalqura', numberingSystem: 'arabic' };
@@ -108,46 +105,46 @@
 
     const rawData = [
         // 1. التناظر اللفظي
-        { type: "التناظر اللفظي", q: "غصن : شجرة", options: ["بحر : ماء", "نصل : سيف", "شمس : ضياء", "نافذة : هواء"], correctText: "نصل : سيف" },
-        { type: "التناظر اللفظي", q: "منحل : نحل", options: ["مطار : طائرات", "إسطبل : خيول", "مكتبة : كتب", "مستشفى : مرضى"], correctText: "إسطبل : خيول" },
-        { type: "التناظر اللفظي", q: "سماء : نجوم", options: ["حديقة : أشجار", "غابة : حيوانات", "صحراء : رمال", "بحر : لؤلؤ"], correctText: "بحر : لؤلؤ" },
+        { type: "التناظر اللفظي", q: "عين : رؤية", options: ["أذن : سمع", "أنف : شم", "لسان : تذوق", "قدم : مشي"], correctText: "أذن : سمع" },
+        { type: "التناظر اللفظي", q: "سحاب : مطر", options: ["نار : دخان", "شمس : ضياء", "مذاكرة : نجاح", "بحر : سمك"], correctText: "نار : دخان" },
+        { type: "التناظر اللفظي", q: "ثوب : قماش", options: ["خاتم : ذهب", "باب : خشب", "كتاب : ورق", "سيارة : معدن"], correctText: "خاتم : ذهب" },
         
         // 2. إكمال الجمل
-        { type: "إكمال الجمل", q: "العظماء هم الذين ..... الفشل ليكون سلمًا للنجاح", options: ["يستخدمون", "يتجنبون", "يهملون", "يخافون"], correctText: "يستخدمون" },
-        { type: "إكمال الجمل", q: "الكذب مثل ..... كلما دحرجتها كبرت", options: ["الحجر", "الكرة", "كرة الثلج", "الصخرة"], correctText: "كرة الثلج" },
-        { type: "إكمال الجمل", q: "الإنسان الناجح قادر على ..... أهدافه مهما كانت الصعوبات", options: ["تحقيق", "تحديد", "نسيان", "تغيير"], correctText: "تحقيق" },
+        { type: "إكمال الجمل", q: "العلم في الصغر كالنقش على .....", options: ["الرمل", "الماء", "الحجر", "الورق"], correctText: "الحجر" },
+        { type: "إكمال الجمل", q: "من سلك طريقاً يلتمس فيه علماً ..... الله له طريقاً إلى الجنة", options: ["سهّل", "أنار", "فتح", "يسّر"], correctText: "سهّل" },
+        { type: "إكمال الجمل", q: "كن ..... ترى الوجود جميلاً", options: ["جميلاً", "قانعاً", "متفائلاً", "صابراً"], correctText: "جميلاً" },
 
         // 3. المفردة الشاذة والارتباط والاختلاف
-        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["زحل", "المريخ", "الأرض", "القمر"], correctText: "القمر" },
-        { type: "الارتباط والاختلاف", q: "ما الكلمة المختلفة؟", options: ["السيف", "الرمح", "الدرع", "الخنجر"], correctText: "الدرع" },
-        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["الرسم", "النحت", "الموسيقى", "القراءة"], correctText: "القراءة" },
+        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["الفجر", "الضحى", "الظهر", "العصر"], correctText: "الضحى" },
+        { type: "الارتباط والاختلاف", q: "ما الكلمة المختلفة؟", options: ["الشتاء", "الربيع", "الخريف", "المطر"], correctText: "المطر" },
+        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["الرياض", "القاهرة", "بغداد", "الشارقة"], correctText: "الشارقة" },
 
         // 4. الخطأ في السياق
-        { type: "الخطأ في السياق", q: "إضاءة شمعة صغيرة خير لك من أن تنفق عمرك في سب الضوء", options: ["إضاءة", "صغيرة", "تنفق", "الضوء"], correctText: "الضوء" },
-        { type: "الخطأ في السياق", q: "من كثر خطؤه، قل حياؤه، ومن قل حياؤه زاد ورعه", options: ["خطؤه", "حياؤه", "قل", "زاد"], correctText: "زاد" },
-        { type: "الخطأ في السياق", q: "المتفائل يرى في كل مشكلة فرصة، والمتشائم يرى في كل فرصة سعادة", options: ["المتفائل", "مشكلة", "فرصة", "سعادة"], correctText: "سعادة" },
+        { type: "الخطأ في السياق", q: "من أراد علماً بلا عمل، كمن أراد سفينة بلا بحر", options: ["علماً", "عمل", "سفينة", "بحر"], correctText: "بحر" },
+        { type: "الخطأ في السياق", q: "الابتسامة بوجه أخيك صدقة تعيد اليأس لقلبه الحزين", options: ["الابتسامة", "صدقة", "اليأس", "الحزين"], correctText: "اليأس" },
+        { type: "الخطأ في السياق", q: "من عفا عن إساءة عدوه، زادت كراهيته له", options: ["عفا", "إساءة", "زادت", "كراهيته"], correctText: "كراهيته" },
 
         // 5. استيعاب المقروء
         { 
             type: "استيعاب المقروء", 
-            text: "يُعد التمر غذاءً كاملاً؛ لاحتوائه على معظم العناصر الغذائية الضرورية للجسم، كما أنه مصدر سريع للطاقة بفضل السكريات البسيطة فيه.",
-            q: "وصف التمر بأنه غذاء كامل بسبب:", 
-            options: ["طعمه الحلو", "توفره بكثرة", "تنوع عناصره الغذائية", "سرعة هضمه"], 
-            correctText: "تنوع عناصره الغذائية" 
+            text: "تعتبر مدينة الرياض عاصمة المملكة العربية السعودية، وهي مركز سياسي واقتصادي هام وتتميز بتطورها العمراني.",
+            q: "تعتبر الرياض مركزاً هاماً من الناحية:", 
+            options: ["الزراعية", "السياسية والاقتصادية", "السياحية فقط", "التاريخية القديمة"], 
+            correctText: "السياسية والاقتصادية" 
         },
         { 
             type: "استيعاب المقروء", 
-            text: "تعتمد صناعة الورق بشكل أساسي على ألياف السليلوز المستخرجة من الأشجار، مما يجعل إعادة تدوير الورق ضرورة لحماية الغابات.",
-            q: "الهدف من إعادة تدوير الورق هو:", 
-            options: ["صناعة أنواع جديدة", "تقليل تكلفة الشحن", "المحافظة على الغابات", "زيادة إنتاج الخشب"], 
-            correctText: "المحافظة على الغابات" 
+            text: "تعتمد الرؤية الوطنية 2030 على تنويع مصادر الدخل لضمان مستقبل مستدام للأجيال القادمة.",
+            q: "الهدف من تنويع مصادر الدخل هو:", 
+            options: ["زيادة الاستهلاك", "ضمان مستقبل مستدام", "توفير فرص عمل", "تطوير التعليم"], 
+            correctText: "ضمان مستقبل مستدام" 
         },
         { 
             type: "استيعاب المقروء", 
-            text: "إن التلوث الضوضائي في المدن الكبرى يؤثر سلبًا على التركيز والإنتاجية، ويزيد من مستويات التوتر لدى السكان.",
-            q: "يفهم من النص أن العلاقة بين الضوضاء والتركيز هي علاقة:", 
-            options: ["طردية", "عكسية", "إيجابية", "معدومة"], 
-            correctText: "عكسية" 
+            text: "تعتبر زراعة النخيل في المملكة من أهم المحاصيل، حيث تحتل مراكز متقدمة عالمياً في إنتاج التمور.",
+            q: "تحتل المملكة مراكز متقدمة في إنتاج:", 
+            options: ["القمح", "التمور", "الزيتون", "العنب"], 
+            correctText: "التمور" 
         }
     ];
 
@@ -254,7 +251,4 @@
     }
 </script>
 </body>
-
 </html>
-
-
