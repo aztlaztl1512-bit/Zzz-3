@@ -31,13 +31,13 @@
     <div id="timer-bar"></div>
     
     <div id="login-section">
-        <h2 style="color: var(--primary);">( تحدي اليوم )</h2>
+        <h2 style="color: var(--primary);">( تحدي اليوم - المستوى المتقدم )</h2>
         
         <div id="date-display" class="date-red-small">جاري تحميل التاريخ...</div>
         
         <div class="copyright">أ/ <span class="normal-text">عبدالعزيز الفيفي</span> - <span class="normal-text">ثانوية الأمير عبدالمجيد 🎓</span></div>
         <p></p>
-        <input type="text" id="student-name" placeholder="أدخل اسمك الثلاثي لتبدأ...">
+        <input type="text" id="student-name" placeholder="أدخل اسمك الثلاثي لتبدأ التحدي...">
         <br>
         <button class="btn-start" onclick="startQuiz()">بدأ الاختبار</button>
     </div>
@@ -53,34 +53,11 @@
     </div>
 
     <div id="result-section" class="hidden">
-        <h2>تم اكتمال الاختبار بنجاح</h2>
+        <h2>تم اكتمال التحدي الصعب بنجاح</h2>
         <h1 id="final-score" style="color: var(--primary);"></h1>
-        <link href="https://fonts.googleapis.com" rel="stylesheet">
-
-        <button class="btn-start" onclick="location.reload()" style="
-            background: linear-gradient(45deg, #ff512f, #dd2476);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(221, 36, 118, 0.4);
-            transition: transform 0.3s ease;
-            direction: rtl;
-        ">
-            ليس هناك تحدٍ أكبر من تطوير ذاتك؛ أعد الكرة الآن 🚀 أو كُن النسخة الأفضل غداً 🔥✨
+        <button class="btn-start" onclick="location.reload()" style="background: linear-gradient(45deg, #4a148c, #7b1fa2); color: white; padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer;">
+            ليس هناك تحدٍ أكبر من تطوير ذاتك؛ أعد الكرة الآن 🚀
         </button>
-
-        <style>
-            .btn-start:hover {
-                transform: scale(1.05);
-                box-shadow: 0 6px 20px rgba(221, 36, 118, 0.6);
-            }
-        </style>
-
         <p style="margin-top: 20px;">✨ أ / <span class="normal-text">عبد العزيز الفيفي</span> - <span class="normal-text">ثانوية الأمير عبدالمجيد 🎓</span></p>
     </div>
 </div>
@@ -90,11 +67,7 @@
         const today = new Date();
         const hijriOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', calendar: 'islamic-umalqura', numberingSystem: 'arabic' };
         const gregOptions = { day: 'numeric', month: 'long', year: 'numeric', numberingSystem: 'arabic' };
-        
-        const hijriDate = new Intl.DateTimeFormat('ar-SA', hijriOptions).format(today);
-        const gregDate = new Intl.DateTimeFormat('ar-SA', gregOptions).format(today);
-        
-        document.getElementById('date-display').innerText = `${hijriDate} | ${gregDate} م`;
+        document.getElementById('date-display').innerText = `${new Intl.DateTimeFormat('ar-SA', hijriOptions).format(today)} | ${new Intl.DateTimeFormat('ar-SA', gregOptions).format(today)} م`;
     }
 
     let timeLeft = 40;
@@ -104,71 +77,39 @@
     const TRANSITION_DELAY = 5500;
 
     const rawData = [
-        // --- 1. التناظر اللفظي ---
-        { type: "التناظر اللفظي", q: "مبتسم : سعيد", options: ["غاضب : مستاء", "حزين : ضاحك", "نشيط : كسلان", "جائع : شبعان"], correctText: "غاضب : مستاء" },
-        { type: "التناظر اللفظي", q: "قطار : سكة", options: ["سيارة : شارع", "سفينة : بحر", "طائرة : جو", "دراجة : هواء"], correctText: "سيارة : شارع" },
-        { type: "التناظر اللفظي", q: "شجرة : ثمر", options: ["نخلة : رطب", "قلم : كتابة", "ساعة : وقت", "وردة : عطر"], correctText: "نخلة : رطب" },
-        { type: "التناظر اللفظي", q: "رأس : حذاء", options: ["يد : قفاز", "عين : نظارة", "كتف : حقيبة", "شعر : قبعة"], correctText: "يد : قفاز" },
+        // --- 1. التناظر اللفظي (مستوى عالي) ---
+        { type: "التناظر اللفظي", q: "كدر : صفاء", options: ["خداع : رياء", "ضجيج : سكون", "حرارة : نار", "ليل : ظلام"], correctText: "ضجيج : سكون" },
+        { type: "التناظر اللفظي", q: "فيافي : صحراء", options: ["جبال : هضاب", "مدن : شوارع", "كتب : أفكار", "أساور : ذهب"], correctText: "أساور : ذهب" },
+        { type: "التناظر اللفظي", q: "حجة : برهان", options: ["ضعف : قوة", "خوف : فزع", "صمت : حديث", "مطر : سحاب"], correctText: "خوف : فزع" },
+        { type: "التناظر اللفظي", q: "منحل : عسل", options: ["حقل : قمح", "بئر : ماء", "منجم : ذهب", "مخبز : دقيق"], correctText: "منجم : ذهب" },
 
-        // --- 2. إكمال الجمل ---
-        { type: "إكمال الجمل", q: "القراءة للروح كـ ..... للجسم، تغذيه وتنميه", options: ["الطعام", "الماء", "الهواء", "الدواء"], correctText: "الطعام" },
-        { type: "إكمال الجمل", q: "من أراد النجاح فعليه أن يبتعد عن ..... ويتمسك بـ .....", options: ["الأعذار - العمل", "الناس - الفشل", "الوقت - التخطيط", "الراحة - الجد"], correctText: "الأعذار - العمل" },
-        { type: "إكمال الجمل", q: "الحياة تجارب، فمن لم ..... لم .....", options: ["يخطئ - يتعلم", "يعمل - ينجح", "يقرأ - يثقف", "يغامر - يفز"], correctText: "يخطئ - يتعلم" },
-        { type: "إكمال الجمل", q: "كن كـ ..... لا يحقد على أحد، بل يمنح الجميع .....", options: ["الغيم - المطر", "الشمس - الضياء", "الجبل - الثبات", "النهر - العطاء"], correctText: "الغيم - المطر" },
+        // --- 2. الخطأ في السياق (مستوى عالي) ---
+        { type: "الخطأ في السياق", q: "كلما ارتفع الإنسان وتطور، زادت حاجته للتواضع؛ لأن القمة لا تتسع إلا للناجحين المتكبرين", options: ["ارتفع", "للتواضع", "القمة", "المتكبرين"], correctText: "المتكبرين" },
+        { type: "الخطأ في السياق", q: "إن من الثناء ما هو أقسى من الهجاء، ومن الصمت ما هو أبلغ من الكلام في إيصال الرضا", options: ["الثناء", "أقسى", "الصمت", "الرضا"], correctText: "الرضا" },
+        { type: "الخطأ في السياق", q: "الابتسامة بوجه أخيك صدقة، وهي الجسر الأطول الذي يباعد بين القلوب المتحابة", options: ["صدقة", "الجسر", "يباعد", "المتحابة"], correctText: "يباعد" },
+        { type: "الخطأ في السياق", q: "العاقل من يقيس الأمور بميزان العاطفة، والجاهل من يتبع هواه في اتخاذ قراراته", options: ["العاقل", "العاطفة", "يتبع", "قراراته"], correctText: "العاطفة" },
 
-        // --- 3. المفردة الشاذة ---
-        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["أسد", "نمر", "فهد", "أرنب"], correctText: "أرنب" },
-        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["أبريل", "مايو", "يونيو", "الربيع"], correctText: "الربيع" },
-        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["مربع", "مستطيل", "معين", "مكعب"], correctText: "مكعب" },
-        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["الخاتم", "السوار", "القلادة", "القميص"], correctText: "القميص" },
+        // --- 3. إكمال الجمل ---
+        { type: "إكمال الجمل", q: "يعد ..... من أهم وسائل التفاهم بين الشعوب، وبدونه تسود .....", options: ["الحوار - الفوضى", "المال - التجارة", "العلم - الجهل", "السفر - الغربة"], correctText: "الحوار - الفوضى" },
+        { type: "إكمال الجمل", q: "إن الرقابة ..... نابعة من الوجدان لا من خوف العقاب الخارجي", options: ["الذاتية", "الأسرية", "الدولية", "القانونية"], correctText: "الذاتية" },
 
-        // --- 4. الخطأ في السياق ---
-        { type: "الخطأ في السياق", q: "العمل الجاد يؤدي إلى النجاح، والكسل يؤدي إلى التميز", options: ["الجاد", "النجاح", "الكسل", "التميز"], correctText: "التميز" },
-        { type: "الخطأ في السياق", q: "من يبحث عن صديق بلا عيوب، يظل وحيداً طوال حياته لأنه يفقد صديقاً", options: ["يبحث", "بلا", "وحيداً", "يفقد"], correctText: "يفقد" },
-        { type: "الخطأ في السياق", q: "الاعتراف بالخطأ فضيلة، أما المكابرة فهي دليل على ضعف الشخصية", options: ["الاعتراف", "فضيلة", "المكابرة", "ضعف"], correctText: "ضعف" },
-        { type: "الخطأ في السياق", q: "الرياضة تزيد من نشاط الجسم، وتساعد على التخلص من الحركة والنشاط", options: ["تزيد", "نشاط", "التخلص", "الحركة"], correctText: "الحركة" },
+        // --- 4. المفردة الشاذة ---
+        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["القسط", "العدل", "الإنصاف", "الظلم"], correctText: "الظلم" },
+        { type: "المفردة الشاذة", q: "ما الكلمة المختلفة؟", options: ["الذهب", "الفضة", "الماس", "النحاس"], correctText: "الماس" },
 
         // --- 5. استيعاب المقروء ---
         { 
             type: "استيعاب المقروء", 
-            text: "يشير الخبراء إلى أن الذكاء العاطفي لا يقل أهمية عن الذكاء المعرفي في بيئات العمل الحديثة، فالقدرة على فهم مشاعر الآخرين والتحكم في الانفعالات هي مفتاح القيادة الناجحة.",
-            q: "يستنتج من النص أن القيادة الناجحة تتطلب:", 
-            options: ["الذكاء المعرفي فقط", "الذكاء العاطفي والمعرفي", "القوة البدنية", "خبرة تقنية صرفة"], 
-            correctText: "الذكاء العاطفي والمعرفي" 
-        },
-        { 
-            type: "استيعاب المقروء", 
-            text: "تعتمد الاستدامة البيئية على مبدأ التقليل من الهدر، وإعادة تدوير الموارد، والاعتماد على مصادر الطاقة المتجددة لتلبية احتياجات الأجيال الحالية دون المساس بقدرة الأجيال القادمة على تلبية احتياجاتها.",
-            q: "مفهوم الاستدامة يرتكز على:", 
-            options: ["استهلاك كل الموارد", "الحفاظ على الموارد للأجيال القادمة", "تجاهل الطاقة المتجددة", "زيادة الهدر الصناعي"], 
-            correctText: "الحفاظ على الموارد للأجيال القادمة" 
-        },
-        { 
-            type: "استيعاب المقروء", 
-            text: "لقد أحدثت تقنيات الاتصال الحديثة ثورة في مفهوم 'العمل عن بُعد'، حيث تلاشت الحدود الجغرافية بين الشركات والموظفين، مما أدى إلى مرونة أكبر في إدارة المهام.",
-            q: "الأثر المباشر لتقنيات الاتصال في العمل هو:", 
-            options: ["زيادة التكلفة", "تلاشت الحدود الجغرافية", "زيادة العمل الروتيني", "الاعتماد على العمل الورقي"], 
-            correctText: "تلاشت الحدود الجغرافية" 
-        },
-        { 
-            type: "استيعاب المقروء", 
-            text: "التعلم مدى الحياة هو السبيل الوحيد للبقاء في سوق العمل المتغير، حيث يتطلب الأمر تحديثاً مستمراً للمهارات المعرفية والتقنية لتجنب التقادم المهني.",
-            q: "ما هو السبب الذي يجعل التعلم مدى الحياة ضرورة مهنية؟", 
-            options: ["الرغبة في الحصول على الشهادات", "سرعة تغير سوق العمل وتقادم المهارات", "كثرة أوقات الفراغ", "انخفاض تكلفة التدريب"], 
-            correctText: "سرعة تغير سوق العمل وتقادم المهارات" 
+            text: "تعتبر (المياه الافتراضية) أداة استراتيجية لتقدير حجم المياه المستهلكة في إنتاج السلع؛ فاستيراد دولة ما لطن من القمح يعني توفير كمية المياه التي كان سيستهلكها إنتاجه محلياً.",
+            q: "الهدف الجوهري من مفهوم المياه الافتراضية هو:", 
+            options: ["ترشيد استهلاك المياه القومي", "زيادة صادرات القمح", "حساب تكلفة النقل", "تحديد أسعار السلع"], 
+            correctText: "ترشيد استهلاك المياه القومي" 
         }
     ];
 
     let quizData = [];
-
-    function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
+    function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
+    
     function startQuiz() {
         if (!document.getElementById('student-name').value) { alert("لطفاً، ادخل اسمك أولاً"); return; }
         quizData = shuffle([...rawData]);
@@ -182,8 +123,7 @@
         const shuffledOptions = shuffle([...q.options]);
         document.getElementById('question-title').innerText = `س ${currentQ + 1} في ( ${q.type} )`;
         const readingBox = document.getElementById('reading-container');
-        if (q.text) { readingBox.innerText = q.text; readingBox.classList.remove('hidden'); } 
-        else { readingBox.classList.add('hidden'); }
+        if (q.text) { readingBox.innerText = q.text; readingBox.classList.remove('hidden'); } else { readingBox.classList.add('hidden'); }
         document.getElementById('question-text').innerText = q.q;
         const container = document.getElementById('options-container');
         container.innerHTML = '';
@@ -203,11 +143,7 @@
         clearInterval(timerInterval);
         timeLeft = 40;
         updateTimerUI();
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            updateTimerUI();
-            if (timeLeft <= 0) { clearInterval(timerInterval); showCorrectAndNext(); }
-        }, 1000);
+        timerInterval = setInterval(() => { timeLeft--; updateTimerUI(); if (timeLeft <= 0) { clearInterval(timerInterval); showCorrectAndNext(); } }, 1000);
     }
 
     function updateTimerUI() {
@@ -217,7 +153,8 @@
 
     function checkAnswer(index, isCorrect, correctText) {
         clearInterval(timerInterval);
-        disableOptions();
+        const btns = document.querySelectorAll('.option-btn');
+        btns.forEach(btn => btn.disabled = true);
         if (isCorrect) {
             score++;
             document.getElementById(`opt-${index}`).classList.add('correct-flash');
@@ -225,41 +162,22 @@
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         } else {
             document.getElementById(`opt-${index}`).classList.add('wrong-flash');
-            highlightCorrect(correctText);
-            document.getElementById('feedback').innerHTML = "<span style='color:red'>محاولة جيدة، واصل.. 💪 (الصواب بالأخضر)</span>";
+            btns.forEach(btn => { if (btn.innerText === correctText) btn.classList.add('correct-flash'); });
+            document.getElementById('feedback').innerHTML = "<span style='color:red'>محاولة جيدة، ركز في القادم.. 💪</span>";
         }
         setTimeout(nextQuestion, TRANSITION_DELAY);
-    }
-
-    function highlightCorrect(correctText) {
-        const btns = document.querySelectorAll('.option-btn');
-        btns.forEach(btn => { if (btn.innerText === correctText) btn.classList.add('correct-flash'); });
     }
 
     function showCorrectAndNext() {
         const q = quizData[currentQ];
         document.getElementById('feedback').innerHTML = "<span style='color:orange'>انتهى الوقت! الصواب موضح بالأخضر.. واصل 💪</span>";
-        highlightCorrect(q.correctText);
-        disableOptions();
+        const btns = document.querySelectorAll('.option-btn');
+        btns.forEach(btn => { btn.disabled = true; if (btn.innerText === q.correctText) btn.classList.add('correct-flash'); });
         setTimeout(nextQuestion, TRANSITION_DELAY);
     }
 
-    function disableOptions() {
-        const btns = document.querySelectorAll('.option-btn');
-        btns.forEach(btn => btn.disabled = true);
-    }
-
-    function nextQuestion() {
-        currentQ++;
-        if (currentQ < quizData.length) { showQuestion(); } 
-        else { finishQuiz(); }
-    }
-
-    function finishQuiz() {
-        document.getElementById('quiz-section').classList.add('hidden');
-        document.getElementById('result-section').classList.remove('hidden');
-        document.getElementById('final-score').innerText = `درجتك هي: ${score} من ${quizData.length}`;
-    }
+    function nextQuestion() { currentQ++; if (currentQ < quizData.length) { showQuestion(); } else { finishQuiz(); } }
+    function finishQuiz() { document.getElementById('quiz-section').classList.add('hidden'); document.getElementById('result-section').classList.remove('hidden'); document.getElementById('final-score').innerText = `درجتك هي: ${score} من ${quizData.length}`; }
 </script>
 </body>
 </html>
